@@ -1,0 +1,130 @@
+.root {
+  width: 500px;
+
+  margin: 100px auto;
+}
+
+.rc-slider-dot, .rc-slider-dot-active {
+  top: -5px;
+  width: 14px;
+  height: 14px;
+  background-color: #e8e8e8;
+  border-radius: 50%;
+  border: none;
+}
+
+.rc-slider-step {
+  pointer-events: unset;
+}
+
+.rc-slider-dot-active {
+  background-color: blue;
+}
+
+.rc-slider-dot:first-child {
+  display: none;
+}
+
+.rc-slider-mark-text:hover {
+  color: red;
+}
+
+.rc-slider-rail {
+  height: 4px;
+  background-color: #e8e8e8;
+  border-radius: 2px;
+}
+
+.rc-slider-track {
+  background-color: blue;
+}
+
+.rc-slider-handle {
+  top: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  border: none;
+}
+
+.rc-slider-handle::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 50%;
+}
+
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: unset;
+  box-shadow: none;
+}
+
+.rc-slider-handle:focus,
+.rc-slider-handle:active {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.pointHint {
+  position: relative;
+
+  height: max-content;
+
+  &::before,
+  &::after {
+    --scale: 0;
+    --arrow-size: 6px;
+    --tooltip-color: black;
+
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    z-index: 1;
+
+    transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+
+    box-shadow: (3px -3px 10px #e8e8e8);
+    transition: 0.2s all ease-in-out;
+    transform-origin: top center;
+  }
+
+  &::before {
+    content: attr(data-custom-tooltip);
+
+    width: max-content;
+    max-width: 250px;
+    padding: 12px;
+
+    color: var(--black-primary-500);
+    font-size: 14px;
+    font-weight: 500;
+
+    background-color: var(--white-primary);
+    border-radius: 10px;
+  }
+
+  &::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+    content: '';
+
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid var(--white-primary);
+
+    border-left: 6px solid transparent;
+
+    border-top-color: var(--black-primary-500);
+    transform-origin: bottom center;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    --scale: 1;
+  }
+}

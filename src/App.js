@@ -1,10 +1,10 @@
-import { SimpleSlider } from './components/SimpleSlider';
+import { CustomSlider } from './components/CustomSlider/CustomSlider';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <SimpleSlider />
+      <CustomSlider minValue={0} maxValue={5} step={1} />
     </div>
   );
 }
